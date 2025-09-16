@@ -31,11 +31,6 @@ jobs:
         env: 
           creds: ${{ secrets.AZURE_CREDENTIALS }}
           
-      - name: Terraform Plan
-        working-directory: ./Environment/dev
-        run: terraform plan -out=tfplan
-        env:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
           
           
           
