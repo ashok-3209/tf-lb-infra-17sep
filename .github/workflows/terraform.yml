@@ -44,7 +44,7 @@ jobs:
           ARM_TENANT_ID: ${{ fromJson(secrets.AZURE_CREDENTIALS).tenantId }}
 
 
-  terraform Apply:
+  terraformApply:
     name: 'Terraform Apply'
     runs-on: ubuntu-latest
     environment: dev
