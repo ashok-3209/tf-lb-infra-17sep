@@ -70,7 +70,7 @@ jobs:
 
       - name: Terraform Apply
         working-directory: ./Environment/dev
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -auto-approve
         env: 
           ARM_CLIENT_ID: ${{ fromJson(secrets.AZURE_CREDENTIALS).clientId }}
           ARM_CLIENT_SECRET: ${{ fromJson(secrets.AZURE_CREDENTIALS).clientSecret }}
