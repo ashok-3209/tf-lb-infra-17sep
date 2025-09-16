@@ -181,6 +181,7 @@ module "loadBalancer" {
   lb_rule                 = "LB-heathcheck-rule"
 }
 
+#### Associate VM1 NIC with LB Backend Pool
 module "lb_nic_association_vm1" {
   depends_on            = [module.vm1, module.loadBalancer]
   source                = "../../Modules/azurerm_nic_lb_association"
