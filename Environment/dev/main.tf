@@ -85,13 +85,13 @@ module "vm1" {
   virtual_machine_name   = "aznpfronted-vm1"
   subnet_name            = "frontend-subnet"
   virtual_network_name   = "todoapp_vnet"
-  secret_username_name   = "vm-username"
-  secret_password_name   = "vm-password"
+  secret_username_name   = "vm-username1"
+  secret_password_name   = "vm-password1"
   image_publisher        = "Canonical"
   image_offer            = "ubuntu-24_04-lts"
   image_sku              = "ubuntu-pro-gen1"
   image_version          = "latest"
-  key_vault_name         = "Ashok-KV02"
+  key_vault_name         = "Ashok-KV03"
   nsg_name               = "vm_lb_nsg"
 }
 
@@ -107,13 +107,13 @@ module "vm2" {
   virtual_machine_name   = "aznpfronted-vm2"
   subnet_name            = "frontend-subnet"
   virtual_network_name   = "todoapp_vnet"
-  secret_username_name   = "vm-username"
-  secret_password_name   = "vm-password"
+  secret_username_name   = "vm-username1"
+  secret_password_name   = "vm-password1"
   image_publisher        = "Canonical"
   image_offer            = "0001-com-ubuntu-server-focal"
   image_sku              = "20_04-lts"
   image_version          = "latest"
-  key_vault_name         = "Ashok-KV02"
+  key_vault_name         = "Ashok-KV03"
   nsg_name               = "vm_lb_nsg"
 }
 
@@ -125,9 +125,9 @@ module "sql_server" {
   sql_server_name      = "todosqlserver111"
   location             = "West US"
   resource_group_name  = "dev-rg-ashok01"
-  key_vault_name       = "Ashok-KV02"
-  secret_username_name = "vm-username"
-  secret_password_name = "vm-password"
+  key_vault_name       = "Ashok-KV03"
+  secret_username_name = "vm-username1"
+  secret_password_name = "vm-password1"
 }
 
 module "sql_database" {
@@ -144,7 +144,7 @@ module "sql_database" {
 module "key_vault" {
   depends_on          = [module.azurerm_resource_group]
   source              = "../../Modules/azurerm_key_vault"
-  key_vault_name      = "Ashok-KV02"
+  key_vault_name      = "Ashok-KV03"
   location            = "West US"
   resource_group_name = "dev-rg-ashok01"
 }
@@ -152,8 +152,8 @@ module "key_vault" {
 module "vm_username_secret" {
   depends_on          = [module.key_vault]
   source              = "../../Modules/azurerm_key_vault_secret"
-  key_vault_name      = "Ashok-KV02"
-  secret_name         = "vm-username"
+  key_vault_name      = "Ashok-KV03"
+  secret_name         = "vm-username1"
   secret_value        = "devopsadmin"
   resource_group_name = "dev-rg-ashok01"
 
@@ -161,8 +161,8 @@ module "vm_username_secret" {
 module "vm_password_secret" {
   depends_on          = [module.key_vault, module.vm_username_secret]
   source              = "../../Modules/azurerm_key_vault_secret"
-  key_vault_name      = "Ashok-KV02"
-  secret_name         = "vm-password"
+  key_vault_name      = "Ashok-KV03"
+  secret_name         = "vm-password1"
   secret_value        = "V*nhel$ing$4365"
   resource_group_name = "dev-rg-ashok01"
 }
