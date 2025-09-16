@@ -190,8 +190,10 @@ module "lb_nic_association_vm1" {
   resource_group_name   = "dev-rg-ashok01"
   ip_configuration_name = "vm1_ip"
 
+
 }
 
+#### Associate VM2 NIC with LB Backend Pool
 module "lb_nic_association_vm2" {
   depends_on            = [module.vm2, module.loadBalancer]
   source                = "../../Modules/azurerm_nic_lb_association"
