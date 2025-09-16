@@ -1,0 +1,43 @@
+name: 'lb creation'
+
+on:
+  push:
+    branches:
+      - main
+      - feature/*
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps: 
+      - name: checkout repo
+        uses: actions/checkout@v5
+
+      - name: HashiCorp - Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: latest
+
+      - name: terraform init
+        working-directory: ./Enviroment/dev
+        run: terrform init
+        env: 
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+      - name: Terraform Plan
+        working-directory: ./Environment/dev
+        run: terraform plan -out=tfplan
+        env:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          
+          
+          
+       
+
