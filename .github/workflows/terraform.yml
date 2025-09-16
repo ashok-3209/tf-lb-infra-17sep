@@ -26,7 +26,7 @@ jobs:
           terraform_version: latest
 
       - name: terraform init
-        working-directory: ./Enviroment/dev
+        working-directory: ./Environment/dev
         run: terrform init
         env: 
           creds: ${{ secrets.AZURE_CREDENTIALS }}
